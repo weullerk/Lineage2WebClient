@@ -1,0 +1,89 @@
+body {
+  font-size: .875rem;
+}
+
+* {
+  border-radius: 0 !important;
+}
+
+hr {
+  width: 3.75rem !important;
+  color: rgb(230,21,41) !important;
+  margin: 1rem 0 1rem 0;
+  padding: 0;
+  border: 0;
+  border-top: 0.0625rem solid rgb(230,21,41);
+
+}
+
+h3 {
+  font-size: 1.5rem;
+}
+
+h4 {
+  font-size: 1.125rem;
+}
+
+.btn {
+  padding: .625rem 1.5rem;
+}
+
+.form-control {
+  padding: .625rem .75rem;
+  border-color: #F8F8F8;
+  background-color: #F8F8F8;
+}
+
+.form-control:focus {
+  background-color: #F8F8F8;
+  box-shadow: none;
+}
+
+.dropdown-menu {
+  border: none;
+}
+
+.header {
+  min-height: 25rem;
+  background: url("../../../../../assets/savage/header_bg.jpg") no-repeat center top;
+  border-bottom: 0.4375rem solid rgb(230,21,41);
+}
+
+.menu {
+  background-color: transparent !important;
+}
+
+.menu a.nav-link {
+  color: #FFFFFF !important;
+  text-shadow: #000000 .125rem .125rem .1875rem;
+}
+
+.main-nav {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+}
+
+.main-nav ul {
+  flex-grow: 1;
+}
+
+.pages-nav {
+  justify-content: center;
+}
+
+.container {
+  margin-top: 1.25rem;
+  margin-bottom: 5.8125rem;
+}
+
+.footer {
+  height: 5.8125rem;
+  background: url("../../../../../assets/savage/footer_bg.jpg") no-repeat center top;
+  border-top: 0.4375rem solid rgb(230,21,41);
+  color: #FFFFFF;
+}
+
+.footer p {
+  padding-top: 2rem;
+}

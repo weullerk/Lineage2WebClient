@@ -1,0 +1,31 @@
+<h3>{{ editDownload ? 'Editar' : 'Cadastrar' }} Download</h3>
+<hr />
+
+<div class="col-xs-12 col-sm-12 col-md-12 col-lg-8 px-0">
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+    <div class="form-group">
+      <label for="description">Descrição</label>
+      <input type="text" name="description" id="description" formControlName="description" class="form-control" [ngClass]="form.get('description') | validate">
+      <div *ngIf="form.get('description').errors?.required" class="invalid-feedback">Informe uma descrição.</div>
+    </div>
+
+    <div class="form-group">
+      <label for="size">Tamanho</label>
+      <input type="text" name="size" id="size" formControlName="size" class="form-control" [ngClass]="form.get('size') | validate">
+      <div *ngIf="form.get('size').errors?.required" class="invalid-feedback">Informe um tamanho.</div>
+    </div>
+
+    <div formArrayName="links" class="form-group" *ngFor="let link of links.controls; let i = index;">
+      <label for="link{{i}}">Link #{{ i+1 }}</label>
+      <input type="text" name="link[]" id="link{{i}}" [formControlName]="i" class="form-control" [ngClass]="link | validate">
+      <div *ngIf="link.errors?.required" class="invalid-feedback">Informe um link.</div>
+      <small *ngIf="i > 0"><a href="#" (click)="onRemove(i)">Remover link</a></small>
+    </div>
+
+    <button class="btn btn-primary" type="submit">Enviar</button>
+    <button class="btn btn-success" (click)="onAdd()" type="button">Novo Link</button>
+    <button class="btn btn-danger" (click)="onReset()" type="button">Limpar</button>
+  </form>
+</div>

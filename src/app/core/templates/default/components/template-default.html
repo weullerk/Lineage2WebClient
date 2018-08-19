@@ -1,0 +1,121 @@
+<header class="header">
+  <!-- /Menu -->
+  <nav class="menu navbar navbar-expand-lg navbar-dark bg-dark">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+            aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="main-nav collapse navbar-collapse" id="navbarSupportedContent">
+      <ul></ul>
+      <ul class="pages-nav navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/" routerLinkActive="active">{{ 'home' | translate }} <span class="sr-only">(current)</span></a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/cadastrar" routerLinkActive="active">{{ 'register' | translate }}</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/downloads" routerLinkActive="active">{{ 'downloads' | translate }}</a>
+        </li>
+
+        <li ngbDropdown class="nav-item dropdown">
+          <a ngbDropdownToggle class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true"
+             aria-expanded="false">
+            {{ 'informations' | translate }}
+          </a>
+          <div ngbDropdownMenu class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" [routerLink]="['/info/server']">{{ 'server' | translate }}</a>
+            <a class="dropdown-item" [routerLink]="['/info/eventos']">{{ 'events' | translate }}</a>
+            <a class="dropdown-item" [routerLink]="['/info/mecanicas']">{{ 'mecanics' | translate }}</a>
+          </div>
+        </li>
+
+        <li ngbDropdown class="nav-item dropdown">
+          <a ngbDropdownToggle class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true"
+             aria-expanded="false">
+            {{ 'rankings' | translate }}
+          </a>
+          <div ngbDropdownMenu class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" routerLink="/rankings/characters" routerLinkActive="active">{{ 'characters' | translate }}</a>
+            <a class="dropdown-item" routerLink="/rankings/clans" routerLinkActive="active">{{ 'clans' | translate }}</a>
+            <a class="dropdown-item" routerLink="/rankings/olimpiadas" routerLinkActive="active">{{ 'olimpiads' | translate }}</a>
+          </div>
+        </li>
+
+        <li ngbDropdown class="nav-item dropdown">
+          <a ngbDropdownToggle class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true"
+             aria-expanded="false">
+            {{ 'game' | translate }}
+          </a>
+          <div ngbDropdownMenu class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" routerLink="/olimpiadas" routerLinkActive="active">{{ 'olimpiads' | translate }}</a>
+            <a class="dropdown-item" routerLink="/castle-siege" routerLinkActive="active">{{ 'castleSiege' | translate }}</a>
+          </div>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/doacoes" routerLinkActive="active">{{ 'donations' | translate }}</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/contato" routerLinkActive="active">{{ 'contact' | translate }}</a>
+        </li>
+      </ul>
+
+      <ul class="navbar-nav">
+
+        <li ngbDropdown class="nav-item dropdown">
+          <a ngbDropdownToggle class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true"
+             aria-expanded="false">
+            {{ 'user' | translate }}
+          </a>
+          <div ngbDropdownMenu class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" routerLink="/usuario" routerLinkActive="active">{{ 'panel' | translate }}</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" routerLink="/confirmar" routerLinkActive="active">{{ 'confirm' | translate }}</a>
+            <a class="dropdown-item" routerLink="/confirmado" routerLinkActive="active">Confirmado</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" routerLink="/trocar-senha" routerLinkActive="active">{{ 'changePassword' | translate }}</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" routerLink="/recuperar-senha" routerLinkActive="active">{{ 'recoveryPassword' | translate }}</a>
+            <a class="dropdown-item" routerLink="/atualizar-senha" routerLinkActive="active">{{ 'updatePassword' | translate }}</a>
+          </div>
+        </li>
+
+      </ul>
+    </div>
+  </nav>
+  <!-- /Menu -->
+</header>
+
+<main role="main">
+
+	<div class="container">
+
+		<div class="row">
+
+      <!-- principal -->
+			<div class="col-md-8">
+				<router-outlet></router-outlet>
+			</div>
+			<!-- /principal -->
+
+      <!-- Sidebar -->
+			<div class="col-md-4">
+        <app-user-panel></app-user-panel>
+			</div>
+			<!-- /Sidebar -->
+
+		</div>
+
+	</div>
+
+
+</main>
+
+<footer class="footer container-fluid">
+	<p class="text-center">Lineage2 Website - Desenvolvido por Weuller Krysthian.</p>
+</footer>

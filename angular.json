@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "Lineaqe2-Web-Client": {
+    "lineage2-Web-Client": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/Lineaqe2-Web-Client",
+            "outputPath": "dist/Lineage2-Web-Client",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -23,6 +23,7 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/material-design-icons/iconfont/material-icons.css",
               "src/styles.css"
             ],
             "scripts": []
@@ -50,18 +51,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "Lineaqe2-Web-Client:build"
+            "browserTarget": "lineage2-Web-Client:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "Lineaqe2-Web-Client:build:production"
+              "browserTarget": "lineage2-Web-Client:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "Lineaqe2-Web-Client:build"
+            "browserTarget": "lineage2-Web-Client:build"
           }
         },
         "test": {
@@ -95,7 +96,7 @@
         }
       }
     },
-    "Lineaqe2-Web-Client-e2e": {
+    "lineage2-Web-Client-e2e": {
       "root": "e2e/",
       "projectType": "application",
       "architect": {
@@ -103,7 +104,7 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "Lineaqe2-Web-Client:serve"
+            "devServerTarget": "lineage2-Web-Client:serve"
           }
         },
         "lint": {
@@ -118,5 +119,5 @@
       }
     }
   },
-  "defaultProject": "Lineaqe2-Web-Client"
+  "defaultProject": "lineage2-Web-Client"
 }

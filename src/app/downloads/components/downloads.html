@@ -1,0 +1,46 @@
+<h3>Downloads</h3>
+<hr />
+<p>Baixe aqui os arquivos para se conectar no nosso servidor!</p>
+
+<h4>Como se conectar</h4>
+
+<p>
+1. Baixe e instale o cliente <br>
+2. Baixe o patch do servidor <br>
+3. Instale o patch na pasta que instalou o cliente <br>
+4. Abra a pasta o jogo e execute o Arquivo "LancherL2.exe"
+</p>
+
+
+<h4>Arquivos</h4>
+
+<ul class="nav nav-tabs">
+  <li class="nav-item">
+    <a class="nav-link" [ngClass]="{'active': os === 'windows'}" [routerLink]="['./']" fragment="windows">Windows</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" [ngClass]="{'active': os === 'macos'}" [routerLink]="['./']" fragment="macos">MacOS</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" [ngClass]="{'active': os === 'linux'}" [routerLink]="['./']" fragment="linux">Linux</a>
+  </li>
+</ul>
+
+<table class="table table-hover">
+  <thead>
+  <tr>
+    <th class="border-top-0" scope="col">Descrição</th>
+    <th class="border-top-0" scope="col">Tamanho</th>
+    <th class="border-top-0" scope="col">Link #1</th>
+    <th class="border-top-0" scope="col">Link #2</th>
+
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let download of downloads">
+    <td>{{ download.description }}</td>
+    <td>{{ download.size }}</td>
+    <td *ngFor="let mirror of download.link"><a href="{{ mirror.link }}" target="_blank">{{ mirror.description }}</a></td>
+  </tr>
+  </tbody>
+</table>
