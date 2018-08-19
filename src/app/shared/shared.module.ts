@@ -5,7 +5,9 @@ import { RouterModule } from '@angular/router';
 import { ValidatePipe } from './pipes/validate.pipe';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
-export const PIPES = [ ValidatePipe ];
+export const PIPES = [
+  ValidatePipe
+];
 
 export const MODULES = [
   CommonModule,

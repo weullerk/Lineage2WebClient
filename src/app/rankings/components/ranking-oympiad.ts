@@ -8,4 +8,4 @@ import { Component } from '@angular/core';
               <p>Confira o rankings dos personagens que estão disputando as olimpíadas atualmente.</p>
             `
 })
-export class OlympiadsRankingComponent {}
+export class RankingOlympiadsComponent {}

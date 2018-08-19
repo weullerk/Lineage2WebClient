@@ -45,7 +45,7 @@ h4 {
 
 .header {
   min-height: 25rem;
-  background: url("../../../../../assets/savage/header_bg.jpg") no-repeat center top;
+  background: url("../../../../assets/savage/header_bg.jpg") no-repeat center top;
   border-bottom: 0.4375rem solid rgb(230,21,41);
 }
 
@@ -79,7 +79,7 @@ h4 {
 
 .footer {
   height: 5.8125rem;
-  background: url("../../../../../assets/savage/footer_bg.jpg") no-repeat center top;
+  background: url("../../../../assets/savage/footer_bg.jpg") no-repeat center top;
   border-top: 0.4375rem solid rgb(230,21,41);
   color: #FFFFFF;
 }

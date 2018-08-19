@@ -1,7 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
@@ -14,51 +12,28 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { HttpLoaderFactory } from './app.translate.factory';
 import { environment } from '../environments/environment';
 
+import { AppRoutingModule } from './app-routing-module';
 import { AuthModule } from './auth/auth.module';
 import { CoreModule } from './core/core.module';
-import { AppComponent } from './core/containers/app';
 import { AccountModule } from './account/account.module';
-import { DownloadsModule } from './downloads/downloads.module';
-import { DonationModule } from './donations/donation.module';
-import { InformationsModule } from './informations/informations.module';
 import { CastleSiegeModule } from './castle-siege/castle-siege.module';
 import { ContactModule } from './contact/contact.module';
+import { DonationModule } from './donations/donation.module';
+import { DownloadsModule } from './downloads/downloads.module';
+import { InformationsModule } from './informations/informations.module';
+import { OlympiadsModule } from './olympiads/olympiads.module';
+import { RankingsModule } from './rankings/rankings.module';
 import { UserModule } from './user/user.module';
 
-import { NotFoundComponent } from './core/containers/not-found';
-import { RankingsComponent } from './rankings/components/rankings';
-import { RankingClansComponent } from './rankings/components/ranking-clans';
-import { RankingCharactersComponent } from './rankings/components/ranking-characters';
-import { OlympiadsRankingComponent } from './rankings/components/ranking-oympiad';
-import { OlympiadsHeroesComponent } from './olympiads/containers/olympiads-heroes.component';
-import { OlympiadsComponent } from './olympiads/components/olympiads';
-import { HomeComponent } from './core/containers/home';
+import { AppComponent } from './core/containers/app';
 
-const appRoutes: Routes = [
-  { path: '', component: HomeComponent, pathMatch: 'full' },
-
-  { path: 'olimpiadas', component: OlympiadsComponent },
-  { path: 'rankings/characters', component: RankingCharactersComponent },
-  { path: 'rankings/clans', component: RankingClansComponent },
-  { path: 'rankings/olimpiadas', component: OlympiadsRankingComponent },
-  { path: '**', component: NotFoundComponent }
-];
 
 @NgModule({
-  declarations: [
-    OlympiadsComponent,
-    OlympiadsHeroesComponent,
-    OlympiadsRankingComponent,
-    RankingsComponent,
-    RankingCharactersComponent,
-    RankingClansComponent,
-    HomeComponent
-  ],
+  providers: [],
+  bootstrap: [AppComponent],
   imports: [
     BrowserModule,
     HttpClientModule,
-    FormsModule,
-    RouterModule.forRoot(appRoutes),
     StoreModule.forRoot(reducers),
     EffectsModule.forRoot([AuthEffects]),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
@@ -67,7 +42,7 @@ const appRoutes: Routes = [
         provide: TranslateLoader,
         useFactory: HttpLoaderFactory,
         deps: [HttpClient]
-      }
+      },
     }),
     NgbModule.forRoot(),
     AuthModule,
@@ -78,9 +53,10 @@ const appRoutes: Routes = [
     CastleSiegeModule,
     DonationModule,
     ContactModule,
-    UserModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+    UserModule,
+    OlympiadsModule,
+    RankingsModule,
+    AppRoutingModule
+  ]
 })
 export class AppModule { }

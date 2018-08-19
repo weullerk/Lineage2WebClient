@@ -1,24 +1,23 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { SharedModule } from '../shared/shared.module';
+import { TemplatesModule } from '../templates/templates.module';
 
 import { AppComponent } from './containers/app';
+import { HomeComponent } from './containers/home';
 import { NotFoundComponent } from './containers/not-found';
-
-import { TemplateDefaultComponent } from './templates/default/components/template-default';
-import { UserModule } from '../user/user.module';
+import { ForbiddenComponent } from './containers/forbidden';
 
 export const COMPONENTS = [
   AppComponent,
+  HomeComponent,
   NotFoundComponent,
-  TemplateDefaultComponent
+  ForbiddenComponent
 ];
 
 @NgModule({
   imports: [
-    CommonModule,
     SharedModule,
-    UserModule
+    TemplatesModule
   ],
   declarations: COMPONENTS,
   exports: COMPONENTS

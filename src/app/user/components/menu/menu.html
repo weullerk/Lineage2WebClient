@@ -1,9 +1,13 @@
 <h3>Painel de Controle</h3>
 <hr/>
+<p><small>Seja bem vindo, <b>radiador22</b>!</small></p>
 
 <div class="list-group list-group-flush">
   <a routerLink="/usuario" class="list-group-item list-group-item-action border-top-0">Conta</a>
   <a routerLink="" class="list-group-item list-group-item-action">Characters</a>
-  <a routerLink="" class="list-group-item list-group-item-action">Doações</a>
-  <button type="button" class="list-group-item list-group-item-action" (click)="onLogout()">Sair</button>
+  <a routerLink="" class="list-group-item list-group-item-action border-bottom-0">Doações</a>
 </div>
+
+<br>
+
+<button type="button" class="btn btn-danger" (click)="onLogout()">Sair</button>

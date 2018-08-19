@@ -9,7 +9,6 @@ import { AuthService } from './services/auth.service';
 
 @NgModule({
   imports: [
-    CommonModule,
     SharedModule
   ],
   providers: [AuthService]
