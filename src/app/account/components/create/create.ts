@@ -1,26 +1,26 @@
-import {Component, OnInit} from '@angular/core';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {AccountService} from '../services/account.service';
+import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ValidateAccountService } from '../../services/validate-account.service';
 
 @Component({
   selector: 'app-account-create',
-  templateUrl: './account-create.html'
+  templateUrl: './create.html'
 })
 export class AccountCreateComponent implements OnInit {
   form: FormGroup;
 
-  constructor(private accountService: AccountService) {}
+  constructor(private validateAccountService: ValidateAccountService) {}
 
   ngOnInit() {
     this.form = new FormGroup({
       'name': new FormControl(null, Validators.required),
       'login': new FormControl(null, [Validators.required, Validators.pattern(/^[a-zA-Z0-9]+$/)]),
       'password': new FormControl(null, [Validators.required, Validators.pattern(/^[a-zA-Z0-9]+$/)]),
-      'confirm-password': new FormControl(null, this.accountService.validateConfirmPassword),
+      'confirm-password': new FormControl(null, this.validateAccountService.validateConfirmPassword),
       'email': new FormControl(null, [
         Validators.required,
         Validators.email
-      ], this.accountService.validateEmail.bind(this.accountService))
+      ], this.validateAccountService.validateEmail.bind(this.validateAccountService))
     });
 
     this.form.get('password').valueChanges.subscribe(() => {

@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import { AccountService } from '../services/account.service';
+import { ValidateAccountService } from '../services/validate-account.service';
 import { FormControl, FormGroup, Validators} from '@angular/forms';
 
 @Component({
@@ -10,7 +10,7 @@ export class AccountRecoveryPasswordComponent implements OnInit {
 
   form: FormGroup;
 
-  constructor(private accountService: AccountService) {}
+  constructor(private validateAccountService: ValidateAccountService) {}
 
   ngOnInit() {
     this.form = new FormGroup({

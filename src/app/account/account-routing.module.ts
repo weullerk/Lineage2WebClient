@@ -4,7 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AccountChangePasswordComponent } from './components/account-change-password';
 import { AccountConfirmComponent } from './components/account-confirm';
 import { AccountConfirmSuccessComponent } from './components/account-confirm-success';
-import { AccountCreateComponent } from './components/account-create';
+import { AccountCreateComponent } from './components/create/create';
 import { AccountRecoveryPasswordComponent } from './components/account-recovery-password';
 import { AccountUpdatePasswordComponent } from './components/account-update-password';
 

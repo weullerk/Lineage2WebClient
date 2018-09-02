@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {AccountService} from '../services/account.service';
+import { ValidateAccountService } from '../services/validate-account.service';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 
 @Component({
@@ -9,16 +9,19 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 export class AccountChangePasswordComponent implements OnInit {
   private form: FormGroup;
 
-  constructor(private accountService: AccountService) {}
+  constructor(private validateAccountService: ValidateAccountService) {}
 
   ngOnInit() {
     this.form = new FormGroup({
       'current-password': new FormControl(null, [
         Validators.required,
         Validators.pattern(/[a-zA-Z0-9]+/)
-      ], this.accountService.validateCurrentPassword.bind(this.accountService)),
-      'password': new FormControl(null, [Validators.required, Validators.pattern(/[a-zA-Z0-9]+/), this.accountService.validateNewPassword]),
-      'confirm-password': new FormControl(null, this.accountService.validateConfirmPassword)
+      ], this.validateAccountService.validateCurrentPassword.bind(this.validateAccountService)),
+      'password': new FormControl(
+        null,
+        [Validators.required, Validators.pattern(/[a-zA-Z0-9]+/), this.validateAccountService.validateNewPassword]
+      ),
+      'confirm-password': new FormControl(null, this.validateAccountService.validateConfirmPassword)
     });
 
     this.form.get('password').valueChanges.subscribe(() => {

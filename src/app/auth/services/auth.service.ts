@@ -11,13 +11,7 @@ export class  AuthService {
 
   login(user: Authenticate): Observable<User> {
     const url = environment.apiUrl + 'login';
-    const options = {
-      headers: new HttpHeaders({
-          'Content-Type': 'application/x-www-form-urlencoded'
-        })
-    };
-    const data = {username: user.username, password: user.password};
 
-    return this.http.post<User>(url, data);
+    return this.http.post<User>(url, user);
   }
 }
