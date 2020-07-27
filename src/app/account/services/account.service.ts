@@ -29,4 +29,10 @@ export class AccountService {
 
     return this.httpClient.post<ApiResponse>(url, accountData);
   }
+
+  recoveryPassword(emailData: any): Observable<ApiResponse> {
+    const url = environment.apiUrl + 'account/recovery-password';
+
+    return this.httpClient.post<ApiResponse>(url, emailData);
+  }
 }

@@ -48,11 +48,22 @@ export class ValidateAccountService {
     );
   }
 
-  validateEmail(input: FormControl): Observable<any> {
+  validateEmailExists(input: FormControl): Observable<any> {
     return this.accountService.hasEmail(input.value).pipe(
       map((response: Exists) => {
         if (response.exists === true) {
-          return {emailExist: true};
+          return { emailExists: true };
+        }
+        return null;
+      })
+    );
+  }
+
+  validateEmailNotExists(input: FormControl): Observable<any> {
+    return this.accountService.hasEmail(input.value).pipe(
+      map((response: Exists) => {
+        if (response.exists === false) {
+          return { emailNotExists: true };
         }
         return null;
       })
@@ -63,7 +74,7 @@ export class ValidateAccountService {
     return this.accountService.hasAccount(input.value).pipe(
       map((response: Exists) => {
         if (response.exists === true) {
-          return {accountExist: true};
+          return {accountExists: true};
         }
         return null;
       })

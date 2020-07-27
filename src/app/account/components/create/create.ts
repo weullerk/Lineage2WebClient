@@ -25,7 +25,7 @@ export class AccountCreateComponent implements OnInit {
       'email': new FormControl(null, [
         Validators.required,
         Validators.email
-      ], this.validateAccountService.validateEmail.bind(this.validateAccountService))
+      ], this.validateAccountService.validateEmailExists.bind(this.validateAccountService))
     });
 
     this.form.get('password').valueChanges.subscribe(() => {

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import { ValidateAccountService } from '../services/validate-account.service';
+import { ValidateAccountService } from '../../services/validate-account.service';
 
 @Component({
   selector: 'app-account-update-password',

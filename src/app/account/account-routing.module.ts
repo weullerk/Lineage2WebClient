@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { AccountChangePasswordComponent } from './components/account-change-password';
+import { AccountChangePasswordComponent } from './components/change-password/account-change-password';
 import { AccountCreateComponent } from './components/create/create';
-import { AccountRecoveryPasswordComponent } from './components/account-recovery-password';
-import { AccountUpdatePasswordComponent } from './components/account-update-password';
+import { AccountRecoveryPasswordComponent } from './components/recovery-password/recovery-password';
+import { AccountUpdatePasswordComponent } from './components/update-password/account-update-password';
 
 const accountRoutes: Routes = [
   { path: 'trocar-senha', component: AccountChangePasswordComponent },
