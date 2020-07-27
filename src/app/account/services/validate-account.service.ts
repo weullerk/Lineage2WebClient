@@ -4,7 +4,7 @@ import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { AccountService } from './account.service';
-import { Exists } from '../model/account.model';
+import { Exists } from '../model/exists.model';
 
 @Injectable()
 export class ValidateAccountService {

@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
-import { Exists } from '../model/account.model';
+import { Exists } from '../model/exists.model';
+import { ApiResponse } from '../../shared/model/api-response';
 
 @Injectable()
 export class AccountService {
@@ -21,5 +22,11 @@ export class AccountService {
     const params = new HttpParams().set('login', account);
 
     return this.httpClient.get<Exists>(url, {'params': params});
+  }
+
+  createAccount(accountData: any): Observable<ApiResponse> {
+    const url = environment.apiUrl + 'account/create';
+
+    return this.httpClient.post<ApiResponse>(url, accountData);
   }
 }

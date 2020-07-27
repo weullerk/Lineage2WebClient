@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ValidateAccountService } from '../../services/validate-account.service';
+import {AccountService} from '../../services/account.service';
+import {ApiResponse} from '../../../shared/model/api-response';
+import { Account } from '../../model/account.model';
 
 @Component({
   selector: 'app-account-create',
@@ -8,8 +11,10 @@ import { ValidateAccountService } from '../../services/validate-account.service'
 })
 export class AccountCreateComponent implements OnInit {
   form: FormGroup;
+  message: string;
 
-  constructor(private validateAccountService: ValidateAccountService) {}
+  constructor(private validateAccountService: ValidateAccountService,
+              private accountService: AccountService) {}
 
   ngOnInit() {
     this.form = new FormGroup({
@@ -29,10 +34,25 @@ export class AccountCreateComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.form);
+    const formData = this.form.value;
+
+    const accountModel: Account = {
+      login: formData.login,
+      password: formData.password,
+      confirm_password: formData['confirm-password'],
+      email: formData.email
+    };
+
+    this.accountService.createAccount(accountModel).subscribe((response: ApiResponse) => {
+      this.message = response.message;
+    });
   }
 
   onReset() {
     this.form.reset();
+  }
+
+  onCloseMessage() {
+    this.message = null;
   }
 }
