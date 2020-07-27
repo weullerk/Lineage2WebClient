@@ -7,15 +7,19 @@
 			<input type="text" name="username" formControlName="username" id="panel-username" class="form-control" [ngClass]="form.get('username') | validate">
 			<div *ngIf="form.get('username').errors?.required" class="invalid-feedback">{{ 'usernameRequired' | translate }}</div>
 			<div *ngIf="form.get('username').errors?.pattern" class="invalid-feedback">{{ 'usernameValid' | translate }}</div>
-		</div>
+  </div>
 
 		<div class="form-group">
 			<label for="panel-password">{{ 'password' | translate }}</label>
 			<input type="password" name="password" formControlName="password" id="panel-password" class="form-control" [ngClass]="form.get('password') | validate">
 			<div *ngIf="form.get('password').errors?.required" class="invalid-feedback">{{ 'passwordRequired' | translate }}</div>
 			<div *ngIf="form.get('password').errors?.pattern" class="invalid-feedback">{{ 'passwordValid' | translate }}</div>
-		</div>
+  </div>
 
 	<button class="btn btn-primary" (click)="onSend" [disabled]="form.status === 'INVALID'" type="submit">{{ 'send' | translate }}</button>
   <button class="btn btn-danger" (click)="onReset()" type="button">{{ 'clean' | translate }}</button>
+
+  <div class="form-group pt-3">
+    <a href="#" routerLink="/cadastrar">Registration</a> | <a href="#" routerLink="/recuperar-senha">Lost Password</a>
+  </div>
 </form>

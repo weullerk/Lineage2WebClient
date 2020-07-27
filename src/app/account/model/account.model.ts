@@ -1,3 +1,3 @@
-export interface Email {
-  email: string;
+export interface Exists {
+  exists: boolean;
 }

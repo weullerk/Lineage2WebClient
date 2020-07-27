@@ -10,7 +10,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.translate.setDefaultLang('pt-br');
-    // Implement store consume to change dinamic the language.
+    // Implement store consume to change the language dynamically.
     this.translate.use('en');
   }
 }

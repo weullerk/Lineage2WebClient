@@ -7,23 +7,19 @@
 	<form [formGroup]="form" (ngSubmit)="onSubmit()">
 
 		<div class="form-group">
-			<label for="name">Nome</label>
-			<input type="text" name="name" id="name" formControlName="name" class="form-control" [ngClass]="form.get('name') | validate">
-			<div *ngIf="form.get('name').errors?.required" class="invalid-feedback">O nome é obrigatório.</div>
-		</div>
-
-		<div class="form-group">
 			<label for="login">Login</label>
 			<input type="text" name="login" id="login" formControlName="login" class="form-control" [ngClass]="form.get('login') | validate">
 			<div *ngIf="form.get('login').errors?.required" class="invalid-feedback">O login é obrigatório.</div>
 			<div *ngIf="form.get('login').errors?.pattern" class="invalid-feedback">Insira um login válido.</div>
-		</div>
+			<div *ngIf="form.get('login').errors?.pattern" class="invalid-feedback">Insira um login válido.</div>
+      <div *ngIf="form.get('login').errors?.accountExist" class="invalid-feedback">O login já está sendo utilizado.</div>
+
+    </div>
 
 		<div class="form-group">
 			<label for="password">Senha</label>
 			<input type="password" name="password" id="password" formControlName="password" class="form-control" [ngClass]="form.get('password') | validate">
 			<div *ngIf="form.get('password').errors?.required" class="invalid-feedback">A senha é obrigatória.</div>
-			<div *ngIf="form.get('password').errors?.pattern" class="invalid-feedback">Insira uma senha válida.</div>
 		</div>
 
 		<div class="form-group">
@@ -40,7 +36,7 @@
 			<div *ngIf="form.get('email').errors?.emailExist" class="invalid-feedback">O email já está sendo utilizado.</div>
 		</div>
 
-		<button class="btn btn-primary" [disabled]="form.status === 'INVALID'" type="submit">Enviar</button>
+		<button class="btn btn-primary" [disabled]="form.status === 'INVALID'" type="submit">Cadastrar</button>
 		<button class="btn btn-danger" (click)="onReset()" type="button">Limpar</button>
 	</form>
 

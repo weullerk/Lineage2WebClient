@@ -10,8 +10,9 @@ export class  AuthService {
   constructor(private http: HttpClient) {}
 
   login(user: Authenticate): Observable<User> {
-    const url = environment.apiUrl + 'login';
+    const url = environment.apiUrl + 'auth';
+    const headers = new HttpHeaders();
 
-    return this.http.post<User>(url, user);
+    return this.http.post<User>(url, user, {headers: headers});
   }
 }

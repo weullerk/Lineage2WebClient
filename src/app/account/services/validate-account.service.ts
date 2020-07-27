@@ -4,7 +4,7 @@ import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { AccountService } from './account.service';
-import { Email } from '../model/account.model';
+import { Exists } from '../model/account.model';
 
 @Injectable()
 export class ValidateAccountService {
@@ -28,7 +28,6 @@ export class ValidateAccountService {
     if (input.parent !== undefined && input.value !== null) {
       let currentPassword = input.parent.get('current-password').value;
       let newPassword = input.value;
-      console.log(currentPassword, newPassword);
       if (currentPassword === newPassword) {
         return {'newPassword': true};
       }
@@ -51,9 +50,20 @@ export class ValidateAccountService {
 
   validateEmail(input: FormControl): Observable<any> {
     return this.accountService.hasEmail(input.value).pipe(
-      map((response: Email) => {
-        if (response.email !== '') {
+      map((response: Exists) => {
+        if (response.exists === true) {
           return {emailExist: true};
+        }
+        return null;
+      })
+    );
+  }
+
+  validateAccount(input: FormControl): Observable<any> {
+    return this.accountService.hasAccount(input.value).pipe(
+      map((response: Exists) => {
+        if (response.exists === true) {
+          return {accountExist: true};
         }
         return null;
       })

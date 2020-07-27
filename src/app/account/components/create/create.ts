@@ -13,8 +13,8 @@ export class AccountCreateComponent implements OnInit {
 
   ngOnInit() {
     this.form = new FormGroup({
-      'name': new FormControl(null, Validators.required),
-      'login': new FormControl(null, [Validators.required, Validators.pattern(/^[a-zA-Z0-9]+$/)]),
+      'login': new FormControl(null, [Validators.required, Validators.pattern(/^[a-zA-Z0-9]+$/)],
+        this.validateAccountService.validateAccount.bind(this.validateAccountService)),
       'password': new FormControl(null, [Validators.required, Validators.pattern(/^[a-zA-Z0-9]+$/)]),
       'confirm-password': new FormControl(null, this.validateAccountService.validateConfirmPassword),
       'email': new FormControl(null, [

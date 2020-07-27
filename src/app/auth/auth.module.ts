@@ -6,10 +6,12 @@ import { SharedModule } from '../shared/shared.module';
 import { UserLoginComponent } from '../user/components/login/login';
 
 import { AuthService } from './services/auth.service';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   imports: [
-    SharedModule
+    SharedModule,
+    HttpClientModule
   ],
   providers: [AuthService]
 })
