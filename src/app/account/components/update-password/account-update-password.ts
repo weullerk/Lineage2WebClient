@@ -21,6 +21,10 @@ export class AccountUpdatePasswordComponent implements OnInit {
 
   ngOnInit() {
     this.form = new FormGroup({
+      'email': new FormControl(null, [
+        Validators.required,
+        Validators.email
+      ], this.validateAccountService.validateEmailNotExists.bind(this.validateAccountService)),
       'password': new FormControl(null, [Validators.required, Validators.pattern(/[a-zA-Z0-9]+/)]),
       'confirm-password': new FormControl(null, this.validateAccountService.validateConfirmPassword)
     });
@@ -33,14 +37,20 @@ export class AccountUpdatePasswordComponent implements OnInit {
   onSubmit() {
     const token = this.activatedRoute.snapshot.queryParamMap.get('token');
     const formData = this.form.value;
+    const data = {
+      email: formData.email,
+      password: formData.password,
+      confirm_password: formData['confirm-password']
+    };
 
     if (!token) {
       this.router.navigate(['/']);
     }
 
-    this.accountService.updatePassword(token, formData)
+    this.accountService.updatePassword(token, data)
       .subscribe((response: ApiResponse) => {
         this.message = { message: response.message, type: 'success' };
+        this.onReset();
       }, (response: ApiResponseError) => {
         this.message = { message: response.error, type: 'warning' };
       });

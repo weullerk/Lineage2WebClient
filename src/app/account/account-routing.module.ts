@@ -11,7 +11,7 @@ const accountRoutes: Routes = [
   { path: 'trocar-senha', component: AccountChangePasswordComponent },
   { path: 'cadastrar', component: AccountCreateComponent },
   { path: 'recuperar-senha', component: AccountRecoveryPasswordComponent },
-  { path: 'atualizar-senha', component: AccountUpdatePasswordComponent, canActivate: [UpdatePasswordGuard] },
+  { path: 'atualizar-senha', component: AccountUpdatePasswordComponent },
 ];
 
 @NgModule({
