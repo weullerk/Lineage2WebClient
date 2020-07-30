@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { Exists } from '../model/exists.model';
@@ -34,5 +34,12 @@ export class AccountService {
     const url = environment.apiUrl + 'account/recovery-password';
 
     return this.httpClient.post<ApiResponse>(url, emailData);
+  }
+
+  updatePassword(token: string, passwordData: any): Observable<ApiResponse> {
+    const url = environment.apiUrl + 'account/reset-password';
+    const params = new HttpParams().set('token', token);
+
+    return this.httpClient.post<ApiResponse>(url, passwordData, { params: params });
   }
 }

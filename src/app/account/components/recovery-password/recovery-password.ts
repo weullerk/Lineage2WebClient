@@ -1,8 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import { ValidateAccountService } from '../../services/validate-account.service';
 import { FormControl, FormGroup, Validators} from '@angular/forms';
-import {AccountService} from '../../services/account.service';
-import {ApiResponse} from '../../../shared/model/api-response';
+import { AccountService } from '../../services/account.service';
+import { ApiResponse, ApiResponseError } from '../../../shared/model/api-response';
+import { Message } from '../../../shared/model/message';
 
 @Component({
   selector: 'app-account-recovery-password',
@@ -11,7 +12,7 @@ import {ApiResponse} from '../../../shared/model/api-response';
 export class AccountRecoveryPasswordComponent implements OnInit {
 
   form: FormGroup;
-  message: string;
+  message: Message | null = null;
 
   constructor(private validateAccountService: ValidateAccountService,
               private accountService: AccountService) {}
@@ -30,12 +31,15 @@ export class AccountRecoveryPasswordComponent implements OnInit {
   onSubmit() {
     const formData = this.form.value;
 
-    this.accountService.recoveryPassword(formData).subscribe((response: ApiResponse) => {
-      this.message = response.message;
-    });
+    this.accountService.recoveryPassword(formData)
+      .subscribe((response: ApiResponse) => {
+        this.message = { message: response.message, type: 'success' };
+      }, (response: ApiResponseError) => {
+        this.message = { message: response.error, type: 'warning' };
+      });
   }
 
-  onCloseMessage() {
+  Close(messageClosed: boolean) {
     this.message = null;
   }
 }

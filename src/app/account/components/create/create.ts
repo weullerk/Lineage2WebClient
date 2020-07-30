@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ValidateAccountService } from '../../services/validate-account.service';
-import {AccountService} from '../../services/account.service';
-import {ApiResponse} from '../../../shared/model/api-response';
+import { AccountService } from '../../services/account.service';
+import { ApiResponse, ApiResponseError } from '../../../shared/model/api-response';
 import { Account } from '../../model/account.model';
+import { Message } from '../../../shared/model/message';
 
 @Component({
   selector: 'app-account-create',
@@ -11,7 +12,7 @@ import { Account } from '../../model/account.model';
 })
 export class AccountCreateComponent implements OnInit {
   form: FormGroup;
-  message: string;
+  message: Message | null;
 
   constructor(private validateAccountService: ValidateAccountService,
               private accountService: AccountService) {}
@@ -43,16 +44,19 @@ export class AccountCreateComponent implements OnInit {
       email: formData.email
     };
 
-    this.accountService.createAccount(accountModel).subscribe((response: ApiResponse) => {
-      this.message = response.message;
-    });
+    this.accountService.createAccount(accountModel)
+      .subscribe((response: ApiResponse) => {
+        this.message = { message: response.message, type: 'success' };
+      }, (response: ApiResponseError) => {
+        this.message = { message: response.error, type: 'warning' };
+      });
   }
 
   onReset() {
     this.form.reset();
   }
 
-  onCloseMessage() {
+  onCloseMessage(messageClosed: boolean) {
     this.message = null;
   }
 }

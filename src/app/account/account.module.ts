@@ -11,6 +11,8 @@ import { AccountCreateComponent } from './components/create/create';
 import { AccountRecoveryPasswordComponent } from './components/recovery-password/recovery-password';
 import { AccountUpdatePasswordComponent } from './components/update-password/account-update-password';
 import { AccountService } from './services/account.service';
+import {UpdatePasswordGuard} from './guards/update-password.guard';
+import {Router, RouterState} from '@angular/router';
 
 @NgModule({
   imports: [
@@ -25,6 +27,6 @@ import { AccountService } from './services/account.service';
     AccountRecoveryPasswordComponent,
     AccountUpdatePasswordComponent
   ],
-  providers: [ ValidateAccountService, AccountService ]
+  providers: [ ValidateAccountService, AccountService, UpdatePasswordGuard ]
 })
 export class AccountModule {}

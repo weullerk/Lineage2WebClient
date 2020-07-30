@@ -1,15 +1,23 @@
-import { Component } from '@angular/core';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {Component, OnInit} from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ValidateAccountService } from '../../services/validate-account.service';
+import {AccountService} from '../../services/account.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Message } from '../../../shared/model/message';
+import { ApiResponse, ApiResponseError } from '../../../shared/model/api-response';
 
 @Component({
   selector: 'app-account-update-password',
   templateUrl: './account-update-password.html'
 })
-export class AccountUpdatePasswordComponent {
+export class AccountUpdatePasswordComponent implements OnInit {
   form: FormGroup;
+  message: Message | null;
 
-  constructor(private validateAccountService: ValidateAccountService) {}
+  constructor(private validateAccountService: ValidateAccountService,
+              private accountService: AccountService,
+              private activatedRoute: ActivatedRoute,
+              private router: Router) {}
 
   ngOnInit() {
     this.form = new FormGroup({
@@ -23,10 +31,26 @@ export class AccountUpdatePasswordComponent {
   }
 
   onSubmit() {
-    console.log(this.form);
+    const token = this.activatedRoute.snapshot.queryParamMap.get('token');
+    const formData = this.form.value;
+
+    if (!token) {
+      this.router.navigate(['/']);
+    }
+
+    this.accountService.updatePassword(token, formData)
+      .subscribe((response: ApiResponse) => {
+        this.message = { message: response.message, type: 'success' };
+      }, (response: ApiResponseError) => {
+        this.message = { message: response.error, type: 'warning' };
+      });
   }
 
   onReset() {
     this.form.reset();
+  }
+
+  onMessageClose(messageClosed: boolean): void {
+    this.message = null;
   }
 }
