@@ -7,6 +7,8 @@ import {map} from 'rxjs/operators';
 import {AccountService} from '../../services/account.service';
 import {ApiResponse, ApiResponseError} from '../../../shared/model/api-response';
 import {Message} from '../../../shared/model/message';
+import * as fromApp from '../../../reducers/app';
+import * as AuthActions from '../../../auth/actions/auth';
 
 @Component({
   selector: 'app-account-change-password',
@@ -19,7 +21,8 @@ export class AccountChangePasswordComponent implements OnInit {
 
   constructor(private validateAccountService: ValidateAccountService,
               private accountService: AccountService,
-              private store: Store<fromAuth.State>) {}
+              private store: Store<fromAuth.State>,
+              private appStore: Store<fromApp.State>) {}
 
   ngOnInit() {
     this.store.pipe(
@@ -54,6 +57,7 @@ export class AccountChangePasswordComponent implements OnInit {
     this.accountService.changePassword(this.token, data)
       .subscribe((response: ApiResponse) => {
         this.message = { message: response.message, type: 'success' };
+        this.store.dispatch(new AuthActions.Logout());
       }, (response: ApiResponseError) => {
         this.message = { message: response.error, type: 'warning' };
       });
@@ -64,7 +68,7 @@ export class AccountChangePasswordComponent implements OnInit {
     this.form.reset();
   }
 
-  onCloseMessage(messageClosed: boolean) {
+  onMessageClose(messageClosed: boolean) {
     this.message = null;
   }
 }

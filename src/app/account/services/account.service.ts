@@ -45,8 +45,10 @@ export class AccountService {
 
   changePassword(token, passwordData): Observable<ApiResponse> {
     const url = environment.apiUrl + 'account/change-password';
-    const header = new HttpHeaders();
-    header.set('authorize', 'Bearer ' + token);
+    const header = new HttpHeaders({
+      'Content-Type': 'application/json; charset=utf-8',
+      'Authorization': 'Bearer ' + token
+      });
 
     return this.httpClient.post<ApiResponse>(url, passwordData, { headers: header });
   }
