@@ -42,4 +42,12 @@ export class AccountService {
 
     return this.httpClient.post<ApiResponse>(url, passwordData, { params: params });
   }
+
+  changePassword(token, passwordData): Observable<ApiResponse> {
+    const url = environment.apiUrl + 'account/change-password';
+    const header = new HttpHeaders();
+    header.set('authorize', 'Bearer ' + token);
+
+    return this.httpClient.post<ApiResponse>(url, passwordData, { headers: header });
+  }
 }

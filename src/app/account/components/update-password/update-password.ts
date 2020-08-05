@@ -8,7 +8,7 @@ import { ApiResponse, ApiResponseError } from '../../../shared/model/api-respons
 
 @Component({
   selector: 'app-account-update-password',
-  templateUrl: './account-update-password.html'
+  templateUrl: './update-password.html'
 })
 export class AccountUpdatePasswordComponent implements OnInit {
   form: FormGroup;
