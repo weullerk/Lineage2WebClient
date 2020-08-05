@@ -33,12 +33,13 @@ export class AccountChangePasswordComponent implements OnInit {
     this.form = new FormGroup({
       'current-password': new FormControl(null, [
         Validators.required,
-        Validators.pattern(/[a-zA-Z0-9]+/)
+        Validators.pattern(/^[a-zA-Z0-9]+$/)
       ], this.validateAccountService.validateCurrentPassword.bind(this.validateAccountService)),
-      'password': new FormControl(
-        null,
-        [Validators.required, Validators.pattern(/[a-zA-Z0-9]+/), this.validateAccountService.validateNewPassword]
-      ),
+      'password': new FormControl( null, [
+        Validators.required,
+        Validators.pattern(/^[a-zA-Z0-9]+$/),
+        this.validateAccountService.validateNewPassword
+      ]),
       'confirm-password': new FormControl(null, this.validateAccountService.validateConfirmPassword)
     });
 

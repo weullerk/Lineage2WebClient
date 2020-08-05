@@ -20,6 +20,7 @@
 			<label for="password">Senha</label>
 			<input type="password" name="password" id="password" formControlName="password" class="form-control" [ngClass]="form.get('password') | validate">
 			<div *ngIf="form.get('password').errors?.required" class="invalid-feedback">A senha é obrigatória.</div>
+      <div *ngIf="form.get('password').errors?.pattern" class="invalid-feedback">Insira uma senha válida.</div>
 		</div>
 
 		<div class="form-group">

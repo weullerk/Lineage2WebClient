@@ -25,7 +25,7 @@ export class AccountUpdatePasswordComponent implements OnInit {
         Validators.required,
         Validators.email
       ], this.validateAccountService.validateEmailNotExists.bind(this.validateAccountService)),
-      'password': new FormControl(null, [Validators.required, Validators.pattern(/[a-zA-Z0-9]+/)]),
+      'password': new FormControl(null, [Validators.required, Validators.pattern(/^[a-zA-Z0-9]+$/)]),
       'confirm-password': new FormControl(null, this.validateAccountService.validateConfirmPassword)
     });
 
